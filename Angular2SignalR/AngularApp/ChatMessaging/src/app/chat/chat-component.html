@@ -12,7 +12,7 @@
                         <ul class="list-unstyled">
                             <li class="left clearfix" *ngFor="let group of groups">
                                 <h4>{{group}}</h4>
-                                <button class="pull-right btn btn-success" (click)="joinGroup(group);" *ngIf="userData.GroupName != group">Join</button>
+                                <button class="pull-right btn btn-success" (click)="joinGroup(group);" *ngIf="!userData.IsMember">Join</button>
                                 <button class="pull-right btn btn-danger" *ngIf="userData.IsMember && userData.GroupName == group" (click)="leaveGroup()">Leave</button>
                             </li>
                         </ul>
