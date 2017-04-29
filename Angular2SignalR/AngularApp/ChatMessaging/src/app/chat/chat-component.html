@@ -1,0 +1,96 @@
+<div class="main_section">
+    <div class="container">
+        <div class="chat_container">
+            <div class="col-sm-3 chat_sidebar">
+                <div class="row">
+                    <div class="title-block">
+                        <div class="input-group col-md-12">
+                            <h3>Groups</h3>
+                        </div>
+                    </div>
+                    <div class="group_list">
+                        <ul class="list-unstyled">
+                            <li class="left clearfix" *ngFor="let group of groups">
+                                <h4>{{group}}</h4>
+                                <button class="pull-right btn btn-success" (click)="joinGroup(group);" *ngIf="userData.GroupName != group">Join</button>
+                                <button class="pull-right btn btn-danger" *ngIf="userData.IsMember && userData.GroupName == group" (click)="leaveGroup()">Leave</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="title-block">
+                        <div class="input-group col-md-12">
+                            <span class="pull-left" style="color:#fff;"><strong>{{connectionState | async}}</strong></span>
+                            <span class="badge pull-right" [ngClass]="{ connected:(connectionState | async) === 'Connected', 
+                            reconnect:(connectionState | async) === 'Reconnecting',
+                            disconnected:(connectionState | async) === 'Disconnected'}">&nbsp;</span>
+                        </div>
+
+                        <div class="input-group col-md-12" style="margin-top: 10px;">
+                            <button class="btn btn-success" (click)="reConnect()" *ngIf="(connectionState | async) !== 'Connected'">Re-Connect</button>
+                            <button class="btn btn-danger pull-right" (click)="logout()">Log-Out</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 message_section" *ngIf="userData.IsMember && userData.GroupName">
+                <div class="row">
+                    <div class="group_message_section">
+                        <h4>{{userData.GroupName}}</h4>
+                    </div>
+                    <!--group_message_section-->
+                    <div class="chat_area">
+                        <ul class="list-unstyled">
+                            <li class="left clearfix" *ngFor="let message of messages" [ngClass]="{ 'admin_chat': message.UserInfo.UserId != userData.UserId }">
+                                <span class="chat-img1" [ngClass]="{ 
+                                    'pull-left': message.UserInfo.UserId == userData.UserId, 
+                                    'pull-right': message.UserInfo.UserId != userData.UserId }">
+									<img src="https://www.gravatar.com/avatar/{{message.UserInfo.Photo}}?s=50&d=mm" alt="User Avatar" class="img-circle" />
+								</span>
+                                <div class="chat-body1 clearfix" [ngClass]="{ 'membersChat-body': message.UserInfo.UserId != userData.UserId }">
+                                    <span class="user" [ngClass]="{'pull-right': message.UserInfo.UserId != userData.UserId }">{{message.UserInfo.Name}}</span>
+                                    <p>{{message.Message}}</p>
+                                    <div class="chat_time" [ngClass]="{ 'pull-left': message.UserInfo.UserId != userData.UserId, 
+                                'pull-right': message.UserInfo.UserId == userData.UserId }">{{message.DateCreated | date:'hh:mm a'}}</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--chat_area-->
+                    <div class="message_write">
+                        <textarea class="form-control" placeholder="type a message" [(ngModel)]="messageData.Message"></textarea>
+                        <div class="clearfix"></div>
+                        <div class="chat_bottom">
+                            <button type="button" class="pull-right btn btn-success" (click)="sendMessage()">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 chat_sidebar" *ngIf="userData.IsMember && userData.GroupName">
+                <div class="row">
+                    <div class="title-block">
+                        <div class="input-group col-md-12">
+                            <h3>Members</h3>
+                        </div>
+                    </div>
+                    <div class="member_list">
+                        <ul class="list-unstyled">
+                            <li class="left clearfix" *ngFor="let member of sortMembers()">
+                                <span class="chat-img pull-left">
+                                    <img src="https://www.gravatar.com/avatar/{{member.Photo}}?s=50&d=mm" alt="User Avatar" class="img-circle">
+                                </span>
+                                <div class="chat-body clearfix">
+                                    <div class="header_sec">
+                                        <strong class="primary-font">{{member.Name}}</strong>
+                                        <!--<span class="badge pull-right connected">&nbsp;</span>-->
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

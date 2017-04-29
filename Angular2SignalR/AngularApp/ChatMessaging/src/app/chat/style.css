@@ -1,0 +1,127 @@
+.title-block {
+    background: #303641 none repeat scroll 0 0;
+    margin: 0;
+    padding: 10px;
+    color: #fff;
+}
+.member_list .chat-body {
+    margin-left: 47px;
+    margin-top: 0;
+}
+.top_nav {
+    overflow: visible;
+}
+.member_list .contact_sec {
+    margin-top: 3px;
+}
+.member_list li, .group_list li {
+    padding: 6px;
+}
+.member_list ul, .group_list ul {
+    border: 1px solid #dddddd;
+}
+.chat-img img {
+    height: 34px;
+    width: 34px;
+}
+.member_list li, .group_list li {
+    border-bottom: 1px solid #dddddd;
+    padding: 6px;
+}
+.member_list li:last-child {
+    border-bottom: none;
+}
+.member_list, .group_list {
+    height: 356px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.group_message_section {
+    background: #303641 none repeat scroll 0 0;
+    float: left;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 18px 10px;
+    width: 100%;
+    color: #fff;
+}
+.message_section {
+    border: 1px solid #dddddd;
+}
+.chat_area {
+    float: left;
+    height: 300px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+}
+.chat_area li {
+    padding: 14px 14px 0;
+}
+.chat_area li .chat-img1 img {
+    height: 40px;
+    width: 40px;
+}
+.chat_area .chat-body1 {
+    margin-left: 50px;
+    background: #2b303a none repeat scroll 0 0;		
+    padding: 10px;			
+    border-radius: 5px;
+}		
+
+.chat_area .chat-body1 .user, .chat_area .chat-body1 .chat_time {
+    color: #fff;	
+    font-weight: bold;
+    padding: 10px;
+}
+.chat-body1 p {			
+    padding: 10px;
+    color: #aaabae;
+}
+.chat_area .admin_chat .chat-body1 {
+    margin-left: 0;
+    margin-right: 50px;
+}
+.chat_area li:last-child {
+    padding-bottom: 10px;
+}
+.message_write {
+    background: #303641 none repeat scroll 0 0;
+    float: left;
+    padding: 15px;
+    width: 100%;
+}
+.message_write textarea.form-control {
+    height: 70px;
+    padding: 10px;
+}
+.chat_bottom {
+    float: left;
+    margin-top: 13px;
+    width: 100%;
+}
+.member_list li:hover {
+    background: #428bca none repeat scroll 0 0;
+    color: #fff;
+    cursor: pointer;
+}
+
+.connected {
+    background-color: #06b53c;
+}
+
+.reconnect {
+    background-color: #f7d227;
+}
+
+.disconnected {
+    background-color: #c9302c;
+}
+
+.membersChat-body {
+    background: #313f59 !important;
+}
+
+.membersChat-body p {
+    margin-top: 30px;
+}

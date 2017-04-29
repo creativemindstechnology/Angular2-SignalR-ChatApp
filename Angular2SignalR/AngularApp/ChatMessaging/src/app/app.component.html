@@ -1,0 +1,5 @@
+<simple-notifications [options]="options"></simple-notifications>
+
+<registration-component [userData]="userData" *ngIf="!showChatComponent()"></registration-component>
+
+<chat-component [userData]="userData" *ngIf="showChatComponent()"></chat-component>
