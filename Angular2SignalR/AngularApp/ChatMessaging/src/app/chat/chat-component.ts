@@ -63,7 +63,7 @@ export class ChatComponent implements OnInit {
 
         this._chatService.joinGroupEvent$.subscribe((data: User) => {
 
-            this._notification.info('Join Group!', 'Welcome to ' + data.GroupName + '!');
+            this._notification.success('Join Group', 'Welcome to ' + data.GroupName + '!');
 
             //Update the user Data
             this.userData.IsMember = data.IsMember;            
@@ -78,7 +78,7 @@ export class ChatComponent implements OnInit {
         //This will notify Old members that new members has been added
         this._chatService.notifyEvent$.subscribe((member: User) => {
 
-            this._notification.info('Join Group!', member.Name + ' has joined the group.');
+            this._notification.info('Join Group', member.Name + ' has joined the group.');
 
             this.members.push(member);
 
