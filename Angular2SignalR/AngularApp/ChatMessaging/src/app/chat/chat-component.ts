@@ -195,7 +195,6 @@ export class ChatComponent implements OnInit {
     }
 
     private clearUserData() {
-
         this.userData.Email = '';
         this.userData.Name = '';
 
