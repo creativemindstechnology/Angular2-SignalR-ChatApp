@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
-import { User, ChatService } from '../chat/chat-service';
+import { User } from '../chat/chat-service';
 
 @Component({
     selector: 'registration-component',
@@ -15,8 +15,7 @@ export class RegistrationComponent {
 
     form: FormGroup;
 
-    constructor(
-        private _chatService: ChatService,
+    constructor(      
         private _fb: FormBuilder) {
 
         this.form = this._fb.group({
@@ -30,9 +29,7 @@ export class RegistrationComponent {
 
         this.userData.Email = this.form.get('email').value;
         this.userData.Name = this.form.get('name').value;
-
-        this._chatService.startConnection();
-
+        
         localStorage.setItem('userData', JSON.stringify(this.userData));
     }
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.Owin;
+﻿using Microsoft.AspNet.SignalR;
+using Microsoft.Owin;
 using Owin;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,10 @@ namespace Angular2SignalR
             //  .MapSignalR()!            
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
 
-            app.MapSignalR();
+            var hubConfiguration = new HubConfiguration();
+            hubConfiguration.EnableDetailedErrors = true;
+
+            app.MapSignalR(hubConfiguration);
         }
     }
 }

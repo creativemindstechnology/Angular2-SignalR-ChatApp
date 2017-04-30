@@ -100,12 +100,14 @@ export class ChatService {
         this.GroupEvents();
         this.NotifyMembers();
         this.RecievedMessage();
+
+        this.startConnection();
     }
 
     private setupHub() {
 
         // create hub connection  
-        this.connection = $.hubConnection('http://localhost:63690');
+        this.connection = $.hubConnection();
         // create new proxy as name already given in top  
         this.hub = this.connection.createHubProxy(this.hubName);
 
@@ -150,8 +152,9 @@ export class ChatService {
     }
 
     public startConnection(): void {
-        this.connection.start().done((data: any) => {
 
+        this.connection.start().done((data: any) => {
+            console.log(data);
             this.zone.run(() => {
                 this.startingSubject.next(data.id);
             });

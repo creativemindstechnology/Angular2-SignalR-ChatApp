@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { User, ChatService } from './chat/chat-service';
+import { User } from './chat/chat-service';
 import { NotificationsService } from 'angular2-notifications';
 
 @Component({
@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
     maxStack: 5
   }
 
-  constructor(private _chatService: ChatService) {
+  constructor() {
     this.userData = new User();
   }
 
@@ -33,9 +33,7 @@ export class AppComponent implements OnInit {
 
     if (user) {
       this.userData.Name = user.Name;
-      this.userData.Email = user.Email;
-
-      this._chatService.startConnection();
+      this.userData.Email = user.Email;      
     }
 
   }

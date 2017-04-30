@@ -49,6 +49,7 @@ export class ChatComponent implements OnInit {
         this._chatService.starting$.subscribe(
             (userId) => {
                 console.log("signalr service has been started");
+                console.log(userId);
                 this.userData.UserId = userId;
             },
             () => { console.warn("signalr service failed to start!"); }
@@ -62,11 +63,11 @@ export class ChatComponent implements OnInit {
         this.messageData = new MessageData(this.userData);
 
         this._chatService.joinGroupEvent$.subscribe((data: User) => {
-
+            console.log('welcome ' + JSON.stringify(data));
             this._notification.success('Join Group', 'Welcome to ' + data.GroupName + '!');
 
             //Update the user Data
-            this.userData.IsMember = data.IsMember;            
+            this.userData.IsMember = data.IsMember;
 
             this.messageData = new MessageData(this.userData);
 
@@ -77,7 +78,7 @@ export class ChatComponent implements OnInit {
 
         //This will notify Old members that new members has been added
         this._chatService.notifyEvent$.subscribe((member: User) => {
-
+            console.log('new member ' + JSON.stringify(member));
             this._notification.info('Join Group', member.Name + ' has joined the group.');
 
             this.members.push(member);
@@ -100,16 +101,18 @@ export class ChatComponent implements OnInit {
                 this.members.push(member)
             }
 
+            console.log('old member list ' + JSON.stringify(this.members));
+
         }, err => this.errorHandler(err, 'New Member notification'));
 
         this._chatService.messageReceivedEvent$.subscribe((data: MessageData) => {
-
+            console.log('new message ' + JSON.stringify(data));
             this.messages.push(data);
 
         }, err => this.errorHandler(err, 'Receiving Message'));
 
         this._chatService.oldMessagesEvent$.subscribe((messages: Array<MessageData>) => {
-
+            console.log('old message ' + JSON.stringify(messages));
             //Replace your current Messages with the Old messages including your messages in it
             this.messages = messages;
 
